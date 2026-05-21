@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StarWeb PBM - Game Monitor</title>
+<script>
+(() => {
+  const param = new URLSearchParams(window.location.search).get("clawpilotTheme");
+  const theme = param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  document.documentElement.setAttribute("data-theme", theme);
+})();
+</script>
+<style>
+:root {
+  color-scheme: light;
+  --cp-bg: #f7f4ef;
+  --cp-bg-elevated: #fcfbf8;
+  --cp-surface: #ffffff;
+  --cp-surface-soft: #f5f5f5;
+  --cp-border: #dedede;
+  --cp-border-strong: #919191;
+  --cp-text: #242424;
+  --cp-text-muted: #5c5c5c;
+  --cp-text-soft: #6f6f6f;
+  --cp-accent: #b11f4b;
+  --cp-accent-hover: #9a1a41;
+  --cp-accent-soft: rgba(177, 31, 75, 0.08);
+  --cp-accent-fg: #ffffff;
+  --cp-success: #16a34a;
+  --cp-danger: #dc2626;
+  --cp-warning: #f59e0b;
+  --cp-link: #0078d4;
+  --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.12);
+  --cp-overlay: rgba(255, 255, 255, 0.8);
+  --cp-panel: rgba(255, 255, 255, 0.86);
+  --cp-panel-strong: rgba(255, 255, 255, 0.96);
+  --cp-sheen: rgba(255, 255, 255, 0.55);
+  --cp-highlight: rgba(177, 31, 75, 0.12);
+}
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --cp-bg: #3d3b3a;
+  --cp-bg-elevated: #343231;
+  --cp-surface: #292929;
+  --cp-surface-soft: #2e2e2e;
+  --cp-border: #474747;
+  --cp-border-strong: #5f5f5f;
+  --cp-text: #dedede;
+  --cp-text-muted: #919191;
+  --cp-text-soft: #b0b0b0;
+  --cp-accent: #fd8ea1;
+  --cp-accent-hover: #fb7b91;
+  --cp-accent-soft: rgba(253, 142, 161, 0.14);
+  --cp-accent-fg: #1a1a1a;
+  --cp-success: #4ade80;
+  --cp-danger: #f87171;
+  --cp-warning: #fbbf24;
+  --cp-link: #4da6ff;
+  --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+  --cp-overlay: rgba(41, 41, 41, 0.88);
+  --cp-panel: rgba(41, 41, 41, 0.72);
+  --cp-panel-strong: rgba(41, 41, 41, 0.96);
+  --cp-sheen: rgba(255, 255, 255, 0.04);
+  --cp-highlight: rgba(253, 142, 161, 0.12);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: "Segoe UI", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--cp-bg);
+  color: var(--cp-text);
+  line-height: 1.5;
+  padding: 16px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background: var(--cp-surface);
+  border: 1px solid var(--cp-border);
+  border-radius: 16px;
+  margin-bottom: 16px;
+}
+
+.header h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--cp-accent);
+}
+
+.header .meta {
+  display: flex;
+  gap: 24px;
+  font-size: 0.875rem;
+  color: var(--cp-text-muted);
+}
+
+.header .meta span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.controls {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+button {
+  padding: 8px 16px;
+  border: 1px solid var(--cp-border);
+  border-radius: 0.625rem;
+  background: var(--cp-surface);
+  color: var(--cp-text);
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-family: inherit;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+button:hover {
+  background: var(--cp-surface-soft);
+  border-color: var(--cp-border-strong);
+}
+
+button.primary {
+  background: var(--cp-accent);
+  color: var(--cp-accent-fg);
+  border-color: var(--cp-accent);
+}
+
+button.primary:hover {
+  background: var(--cp-accent-hover);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.grid-3 {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.card {
+  background: var(--cp-surface);
+  border: 1px solid var(--cp-border);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 0 2px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.14);
+}
+
+.card h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--cp-text);
+}
+
+.card h3 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--cp-text-muted);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8125rem;
+}
+
+th {
+  text-align: left;
+  padding: 8px 12px;
+  border-bottom: 2px solid var(--cp-border);
+  color: var(--cp-text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.6875rem;
+  letter-spacing: 0.5px;
+}
+
+td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--cp-border);
+}
+
+tr:hover td {
+  background: var(--cp-accent-soft);
+}
+
+.score-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.score-bar .bar {
+  flex: 1;
+  height: 8px;
+  background: var(--cp-surface-soft);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.score-bar .bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.type-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 0.625rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.type-empire_builder { background: var(--cp-highlight); color: var(--cp-accent); }
+.type-merchant { background: rgba(22, 163, 74, 0.1); color: var(--cp-success); }
+.type-pirate { background: rgba(245, 158, 11, 0.1); color: var(--cp-warning); }
+.type-artifact_collector { background: rgba(0, 120, 212, 0.1); color: var(--cp-link); }
+.type-berserker { background: rgba(220, 38, 38, 0.1); color: var(--cp-danger); }
+.type-apostle { background: rgba(139, 92, 246, 0.1); color: #8b5cf6; }
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 12px;
+  background: var(--cp-surface-soft);
+  border-radius: 0.625rem;
+}
+
+.stat-item .value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--cp-accent);
+}
+
+.stat-item .label {
+  font-size: 0.6875rem;
+  color: var(--cp-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-top: 4px;
+}
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--cp-border);
+  padding-bottom: 0;
+}
+
+.tab {
+  padding: 8px 16px;
+  border: none;
+  background: none;
+  color: var(--cp-text-muted);
+  cursor: pointer;
+  font-size: 0.875rem;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+
+.tab.active {
+  color: var(--cp-accent);
+  border-bottom-color: var(--cp-accent);
+}
+
+.tab:hover {
+  color: var(--cp-text);
+  background: none;
+  border-color: transparent;
+  border-bottom-color: var(--cp-border-strong);
+}
+
+.events-list {
+  max-height: 300px;
+  overflow-y: auto;
+  font-size: 0.8125rem;
+}
+
+.event-item {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--cp-border);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.event-icon {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.event-combat { background: var(--cp-danger); }
+.event-diplomacy { background: var(--cp-success); }
+.event-movement { background: var(--cp-link); }
+.event-build { background: var(--cp-warning); }
+
+.board-post {
+  padding: 12px;
+  border: 1px solid var(--cp-border);
+  border-radius: 0.625rem;
+  margin-bottom: 8px;
+}
+
+.board-post .post-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.board-post .post-author {
+  font-weight: 600;
+  color: var(--cp-accent);
+}
+
+.board-post .post-turn {
+  font-size: 0.75rem;
+  color: var(--cp-text-muted);
+}
+
+.board-post .post-body {
+  font-size: 0.8125rem;
+  color: var(--cp-text-soft);
+}
+
+.galaxy-map {
+  width: 100%;
+  height: calc(100vh - 180px);
+  min-height: 500px;
+  background: var(--cp-surface-soft);
+  border-radius: 0.625rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.galaxy-map canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.map-filters {
+  position: absolute;
+  top: 48px;
+  right: 12px;
+  z-index: 10;
+  background: var(--cp-surface);
+  border: 1px solid var(--cp-border);
+  border-radius: 0.5rem;
+  padding: 8px 12px;
+  font-size: 0.75rem;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.map-filters label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 0;
+  cursor: pointer;
+}
+
+.map-filters input[type=checkbox] {
+  margin: 0;
+  cursor: pointer;
+}
+
+.comms-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.message-item {
+  padding: 10px 12px;
+  border: 1px solid var(--cp-border);
+  border-radius: 0.625rem;
+  font-size: 0.8125rem;
+  margin-bottom: 8px;
+}
+
+.message-item .msg-from {
+  font-weight: 600;
+  color: var(--cp-accent);
+}
+
+.message-item .msg-to {
+  color: var(--cp-text-muted);
+}
+
+.message-item .msg-body {
+  margin-top: 4px;
+  color: var(--cp-text-soft);
+}
+
+#loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  color: var(--cp-text-muted);
+}
+
+.hidden { display: none !important; }
+
+@media (max-width: 768px) {
+  .grid { grid-template-columns: 1fr; }
+  .grid-3 { grid-template-columns: 1fr; }
+  .stat-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>StarWeb Monitor</h1>
+  <div class="meta">
+    <span id="game-id">Game: --</span>
+    <span id="turn-num">Turn: --</span>
+    <span id="game-status">Status: --</span>
+  </div>
+</div>
+
+<div class="controls">
+  <button class="primary" onclick="advanceTurn(1)">Advance 1 Turn</button>
+  <button onclick="advanceTurn(5)">Advance 5 Turns</button>
+  <button onclick="advanceTurn(25)">Advance 25 Turns</button>
+  <button onclick="refreshData()">Refresh</button>
+</div>
+
+<div class="stat-grid" id="stats-grid">
+  <div class="stat-item"><div class="value" id="stat-turn">--</div><div class="label">Turn</div></div>
+  <div class="stat-item"><div class="value" id="stat-worlds">--</div><div class="label">Owned Worlds</div></div>
+  <div class="stat-item"><div class="value" id="stat-fleets">--</div><div class="label">Active Fleets</div></div>
+  <div class="stat-item"><div class="value" id="stat-target">--</div><div class="label">Target Score</div></div>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="showTab('scoreboard')">Scoreboard</button>
+  <button class="tab" onclick="showTab('map')">Galaxy Map</button>
+  <button class="tab" onclick="showTab('narrative')">Narrative</button>
+  <button class="tab" onclick="showTab('events')">Events</button>
+  <button class="tab" onclick="showTab('board')">Bulletin Board</button>
+  <button class="tab" onclick="showTab('comms')">Communications</button>
+</div>
+
+<div id="tab-scoreboard">
+  <div class="card">
+    <h2>Player Scoreboard</h2>
+    <table>
+      <thead>
+        <tr><th>#</th><th>Player</th><th>Type</th><th>Score</th><th>Worlds</th><th>Ships</th><th>Progress</th></tr>
+      </thead>
+      <tbody id="scoreboard-body"></tbody>
+    </table>
+  </div>
+</div>
+
+<div id="tab-map" class="hidden">
+  <div class="card" style="position:relative">
+    <h2>Galaxy Map <span id="map-info" style="font-size:0.7rem;color:var(--cp-text-muted);margin-left:12px"></span></h2>
+    <div id="map-filters" class="map-filters">
+      <strong>Show Players:</strong>
+      <div id="player-filter-list"></div>
+      <label style="margin-top:4px;display:block"><input type="checkbox" id="filter-paths" checked onchange="update3DMap()"> Move Paths</label>
+      <label><input type="checkbox" id="filter-alerts" checked onchange="update3DMap()"> Alerts</label>
+      <label><input type="checkbox" id="filter-fleets" checked onchange="update3DMap()"> Fleets</label>
+      <label><input type="checkbox" id="filter-labels" checked onchange="update3DMap()"> World Labels</label>
+      <label><input type="checkbox" id="filter-connections" checked onchange="update3DMap()"> Hop Links</label>
+    </div>
+    <div class="galaxy-map" id="galaxy-container"></div>
+  </div>
+</div>
+
+<div id="tab-narrative" class="hidden">
+  <div class="card">
+    <h2>Turn Narrative</h2>
+    <div class="controls" style="margin-bottom:12px">
+      <button id="narrative-prev" onclick="changeNarrativeTurn(-1)">◀ Prev</button>
+      <span id="narrative-turn-label" style="margin:0 12px;font-weight:600">Turn 0</span>
+      <button id="narrative-next" onclick="changeNarrativeTurn(1)">Next ▶</button>
+    </div>
+    <div id="narrative-content" class="narrative-prose" style="white-space:pre-wrap;line-height:1.7;max-height:70vh;overflow-y:auto;padding:8px 12px"></div>
+  </div>
+</div>
+
+<div id="tab-events" class="hidden">
+  <div class="grid">
+    <div class="card">
+      <h2>Recent Events</h2>
+      <div class="events-list" id="events-list"></div>
+    </div>
+    <div class="card">
+      <h2>Combat Log</h2>
+      <div class="events-list" id="combat-log"></div>
+    </div>
+  </div>
+</div>
+
+<div id="tab-board" class="hidden">
+  <div class="card">
+    <h2>Bulletin Board</h2>
+    <div class="controls" style="margin-bottom:12px">
+      <button onclick="loadBoard('announcements')">Announcements</button>
+      <button onclick="loadBoard('public')">Public</button>
+      <button onclick="loadBoard('trading')">Trading</button>
+    </div>
+    <div id="board-posts"></div>
+  </div>
+</div>
+
+<div id="tab-comms" class="hidden">
+  <div class="grid">
+    <div class="card">
+      <h2>Diplomatic Messages</h2>
+      <div class="comms-panel" id="comms-messages"></div>
+    </div>
+    <div class="card">
+      <h2>Communication Stats</h2>
+      <div id="comms-stats"></div>
+    </div>
+  </div>
+</div>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.164.1/examples/jsm/"
+  }
+}
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
+window.THREE = THREE;
+window.OrbitControls = OrbitControls;
+window.CSS2DRenderer = CSS2DRenderer;
+window.CSS2DObject = CSS2DObject;
+</script>
+
+<script>
+const API = window.location.origin;
+let gameData = null;
+let eventsData = [];
+let scoreHistory = [];
+
+const TYPE_COLORS = {
+  empire_builder: '#b11f4b',
+  merchant: '#16a34a',
+  pirate: '#f59e0b',
+  artifact_collector: '#0078d4',
+  berserker: '#dc2626',
+  apostle: '#8b5cf6'
+};
+
+async function fetchJSON(url) {
+  try {
+    const res = await fetch(API + url);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.json();
+  } catch(e) {
+    console.error('API Error:', e);
+    return null;
+  }
+}
+
+async function refreshData() {
+  gameData = await fetchJSON('/api/game/summary');
+  if (!gameData) return;
+
+  document.getElementById('game-id').textContent = `Game: ${gameData.game_id}`;
+  document.getElementById('turn-num').textContent = `Turn: ${gameData.turn}`;
+  document.getElementById('game-status').textContent = gameData.game_over
+    ? `Winner: ${gameData.winner}` : 'In Progress';
+
+  document.getElementById('stat-turn').textContent = gameData.turn;
+  document.getElementById('stat-worlds').textContent = `${gameData.owned_worlds}/${gameData.total_worlds}`;
+  document.getElementById('stat-fleets').textContent = gameData.total_fleets;
+  document.getElementById('stat-target').textContent = gameData.ending_score.toLocaleString();
+
+  renderScoreboard();
+  trackScoreHistory();
+}
+
+function renderScoreboard() {
+  if (!gameData) return;
+  const maxScore = Math.max(...gameData.players.map(p => p.score), 1);
+  const tbody = document.getElementById('scoreboard-body');
+  tbody.innerHTML = gameData.players.map((p, i) => `
+    <tr>
+      <td>${i + 1}</td>
+      <td><strong>${p.name}</strong> ${p.is_ai ? '<span style="color:var(--cp-text-muted);font-size:0.7rem">[AI]</span>' : ''}</td>
+      <td><span class="type-badge type-${p.type}">${p.type.replace('_', ' ')}</span></td>
+      <td><strong>${p.score.toLocaleString()}</strong></td>
+      <td>${p.worlds_owned}</td>
+      <td>${p.total_ships}</td>
+      <td>
+        <div class="score-bar">
+          <div class="bar">
+            <div class="bar-fill" style="width:${(p.score/gameData.ending_score)*100}%;background:${TYPE_COLORS[p.type] || 'var(--cp-accent)'}"></div>
+          </div>
+          <span style="font-size:0.7rem;color:var(--cp-text-muted)">${Math.round((p.score/gameData.ending_score)*100)}%</span>
+        </div>
+      </td>
+    </tr>
+  `).join('');
+}
+
+function trackScoreHistory() {
+  if (!gameData) return;
+  scoreHistory.push({
+    turn: gameData.turn,
+    scores: gameData.players.map(p => ({name: p.name, score: p.score, type: p.type}))
+  });
+}
+
+async function advanceTurn(n) {
+  const res = await fetch(API + '/api/turn/advance', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({turns: n})
+  });
+  if (res.ok) {
+    const data = await res.json();
+    if (data.game_over) {
+      alert(`Game Over! Winner determined after ${data.current_turn} turns.`);
+    }
+    await refreshData();
+    await loadEvents();
+  }
+}
+
+async function loadEvents() {
+  if (!gameData) return;
+  const turn = gameData.turn;
+
+  // Load narrative for latest turn
+  const narrative = await fetchJSON(`/api/turn/narrative?turn=${turn}`);
+  const el = document.getElementById('events-list');
+  if (narrative && narrative.narrative && narrative.narrative.length > 0) {
+    el.innerHTML = `<div style="margin-bottom:8px;font-weight:600;color:var(--cp-accent)">Turn ${turn} Actions</div>` +
+      narrative.narrative.map(n => `
+        <div style="margin-bottom:12px">
+          <div style="font-weight:600;margin-bottom:4px">${n.player}</div>
+          ${n.actions.map(a => {
+            let iconClass = 'event-build';
+            if (a.includes('[COMBAT]') || a.includes('[DEVASTATION]')) iconClass = 'event-combat';
+            else if (a.includes('[RESULT] Fleet') || a.includes('move')) iconClass = 'event-movement';
+            else if (a.includes('CAPTURED')) iconClass = 'event-diplomacy';
+            return `<div class="event-item"><div class="event-icon ${iconClass}"></div><span>${a.trim()}</span></div>`;
+          }).join('')}
+        </div>
+      `).join('');
+  } else {
+    el.innerHTML = '<p style="color:var(--cp-text-muted)">No events yet. Advance the game to see activity.</p>';
+  }
+
+  // Load combat events across recent turns
+  const combatEl = document.getElementById('combat-log');
+  const history = await fetchJSON('/api/game/history');
+  if (history && history.length > 0) {
+    // Get turns with combat
+    const combatTurns = history.filter(t => t.combat > 0).slice(-10);
+    if (combatTurns.length === 0) {
+      combatEl.innerHTML = '<p style="color:var(--cp-text-muted)">No combat yet.</p>';
+      return;
+    }
+    let combatHtml = '';
+    for (const ct of combatTurns.reverse()) {
+      const log = await fetchJSON(`/api/turn/log?turn=${ct.turn}`);
+      if (!log) continue;
+      const combatEvents = log.events.filter(e =>
+        e.type && (e.type.includes('fire') || e.type.includes('ambush') ||
+        e.type === 'robot_attack' || e.type === 'pbb_dropped' ||
+        e.type === 'fleet_destroyed' || e.type === 'fleet_damaged' ||
+        e.type === 'pirate_capture'));
+      combatEvents.forEach(e => {
+        let desc = '';
+        if (e.type === 'ambush') desc = `${e.ambusher} ambushed Fleet ${e.target_fleet} at W${e.world} (${e.ships_destroyed} ships destroyed)`;
+        else if (e.type === 'fleet_destroyed') desc = `${e.player} destroyed Fleet ${e.target_fleet} (${e.ships_destroyed} ships)`;
+        else if (e.type === 'fleet_damaged') desc = `${e.player} damaged Fleet ${e.target_fleet} (${e.ships_destroyed} hits)`;
+        else if (e.type === 'pirate_capture') desc = `${e.player} captured Fleet ${e.fleet} at W${e.world}`;
+        else if (e.type === 'robot_attack') desc = `${e.player} robot attack at W${e.world}: ${e.people_killed} killed`;
+        else if (e.type === 'pbb_dropped') desc = `${e.player} dropped PBB on W${e.world}! ${e.pop_killed} killed`;
+        else if (e.type === 'fire_population') desc = `${e.player} bombarded W${e.world}: ${e.pop_killed} killed`;
+        else if (e.type === 'fire_industry') desc = `${e.player} bombarded W${e.world}: ${e.industry_killed} industry destroyed`;
+        else desc = `${e.player}: ${e.type}`;
+        combatHtml += `<div class="event-item"><div class="event-icon event-combat"></div><span><strong>T${ct.turn}</strong> ${desc}</span></div>`;
+      });
+    }
+    combatEl.innerHTML = combatHtml || '<p style="color:var(--cp-text-muted)">No combat yet.</p>';
+  }
+}
+
+async function loadBoard(type) {
+  const posts = await fetchJSON(`/api/board/posts?board=${type}`);
+  const el = document.getElementById('board-posts');
+  if (!posts || posts.length === 0) {
+    el.innerHTML = '<p style="color:var(--cp-text-muted)">No posts yet.</p>';
+    return;
+  }
+  el.innerHTML = posts.map(p => `
+    <div class="board-post">
+      <div class="post-header">
+        <span class="post-author">${p.author}</span>
+        <span class="post-turn">Turn ${p.turn}</span>
+      </div>
+      <div><strong>${p.subject}</strong></div>
+      <div class="post-body">${p.body}</div>
+    </div>
+  `).join('');
+}
+
+async function loadComms() {
+  const stats = await fetchJSON('/api/comms/stats');
+  if (stats) {
+    const el = document.getElementById('comms-stats');
+    el.innerHTML = `
+      <div class="stat-grid" style="grid-template-columns:repeat(2,1fr)">
+        <div class="stat-item"><div class="value">${stats.total_messages}</div><div class="label">Total Messages</div></div>
+        <div class="stat-item"><div class="value">${stats.queued}</div><div class="label">Queued</div></div>
+        <div class="stat-item"><div class="value">${stats.delivered}</div><div class="label">Delivered</div></div>
+        <div class="stat-item"><div class="value">${stats.read}</div><div class="label">Read</div></div>
+      </div>
+      <h3 style="margin-top:12px">By Type</h3>
+      <table>
+        <tbody>
+          ${Object.entries(stats.by_type || {}).filter(([k,v]) => v > 0).map(([k,v]) => `
+            <tr><td>${k.replace('_',' ')}</td><td><strong>${v}</strong></td></tr>
+          `).join('')}
+        </tbody>
+      </table>
+    `;
+  }
+
+  const messages = await fetchJSON('/api/comms/messages');
+  const msgEl = document.getElementById('comms-messages');
+  if (!messages || messages.length === 0) {
+    msgEl.innerHTML = '<p style="color:var(--cp-text-muted)">No messages yet.</p>';
+    return;
+  }
+  msgEl.innerHTML = messages.map(m => `
+    <div class="message-item">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <span class="msg-from">${m.sender}</span>
+          <span class="msg-to"> → ${m.recipient}</span>
+        </div>
+        <span style="font-size:0.7rem;color:var(--cp-text-muted)">Turn ${m.turn_sent}${m.turn_delivered ? ' (delivered T'+m.turn_delivered+')' : ' (queued)'}</span>
+      </div>
+      <div style="margin-top:4px">
+        <span class="type-badge type-${m.message_type === 'war_declaration' ? 'berserker' : m.message_type === 'alliance_offer' ? 'merchant' : 'empire_builder'}">${m.message_type.replace(/_/g,' ')}</span>
+      </div>
+      <div class="msg-body">${m.body}</div>
+    </div>
+  `).join('');
+}
+
+let narrativeTurn = 0;
+
+function showTab(name) {
+  document.querySelectorAll('[id^="tab-"]').forEach(el => el.classList.add('hidden'));
+  document.getElementById(`tab-${name}`).classList.remove('hidden');
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+
+  if (name === 'events') loadEvents();
+  if (name === 'board') loadBoard('announcements');
+  if (name === 'comms') loadComms();
+  if (name === 'map') renderGalaxyMap();
+  if (name === 'narrative') loadNarrative();
+}
+
+function loadNarrative(turn) {
+  const t = turn !== undefined ? turn : (gameData ? gameData.turn : 0);
+  narrativeTurn = t;
+  document.getElementById('narrative-turn-label').textContent = `Turn ${t}`;
+  fetch(`/api/turn/narrative?turn=${t}`)
+    .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(data => {
+      // Convert markdown-ish text to basic HTML
+      let html = data.narrative
+        .replace(/^# (.+)$/gm, '<h2>$1</h2>')
+        .replace(/^## (.+)$/gm, '<h3 style="margin-top:16px;color:var(--cp-accent)">$1</h3>')
+        .replace(/^### (.+)$/gm, '<h4 style="margin-top:12px">$1</h4>')
+        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.+?)\*/g, '<em>$1</em>')
+        .replace(/^- (.+)$/gm, '<div style="padding-left:16px">• $1</div>');
+      document.getElementById('narrative-content').innerHTML = html;
+    })
+    .catch(() => {
+      document.getElementById('narrative-content').innerHTML = '<em>No narrative available for this turn.</em>';
+    });
+}
+
+function changeNarrativeTurn(delta) {
+  const maxTurn = gameData ? gameData.turn : 0;
+  narrativeTurn = Math.max(1, Math.min(maxTurn, narrativeTurn + delta));
+  loadNarrative(narrativeTurn);
+}
+
+// 3D Galaxy map state
+let mapWorldsCache = null;
+let mapFleetsCache = null;
+let mapTurnLogCache = null;
+let mapPlayerFilters = {};
+let scene3d = null, camera3d = null, renderer3d = null, controls3d = null;
+let labelRenderer = null;
+let mapInitialized = false;
+let worldMeshes = {};
+let connectionLines = null;
+let fleetMeshes = [];
+let pathLines = [];
+let labelObjects = [];
+let alertSprites = [];
+
+function buildPlayerFilters() {
+  const container = document.getElementById('player-filter-list');
+  if (!container || !gameData || !gameData.players) return;
+  container.innerHTML = gameData.players.map(p => {
+    const color = TYPE_COLORS[p.type] || '#888';
+    if (!(p.name in mapPlayerFilters)) mapPlayerFilters[p.name] = true;
+    const checked = mapPlayerFilters[p.name] ? 'checked' : '';
+    return `<label><input type="checkbox" ${checked} data-player="${p.name}" onchange="togglePlayerFilter(this)"><span style="color:${color};font-weight:600">${p.name}</span></label>`;
+  }).join('');
+}
+
+function togglePlayerFilter(el) {
+  mapPlayerFilters[el.dataset.player] = el.checked;
+  update3DMap();
+}
+
+function isPlayerVisible(name) {
+  return mapPlayerFilters[name] !== false;
+}
+
+function init3DScene() {
+  if (mapInitialized) return;
+  const container = document.getElementById('galaxy-container');
+  if (!container) return;
+
+  // Wait for Three.js module to load
+  if (!window.THREE) {
+    setTimeout(init3DScene, 100);
+    return;
+  }
+
+  const T = window.THREE;
+  const w = container.clientWidth;
+  const h = container.clientHeight;
+
+  scene3d = new T.Scene();
+  scene3d.background = new T.Color(getComputedStyle(document.documentElement)
+    .getPropertyValue('--cp-surface-soft').trim() || '#1a1a2e');
+
+  camera3d = new T.PerspectiveCamera(60, w / h, 0.1, 500);
+  camera3d.position.set(0, 40, 80);
+
+  renderer3d = new T.WebGLRenderer({ antialias: true });
+  renderer3d.setSize(w, h);
+  renderer3d.setPixelRatio(window.devicePixelRatio);
+  container.appendChild(renderer3d.domElement);
+
+  // CSS2D label renderer
+  labelRenderer = new window.CSS2DRenderer();
+  labelRenderer.setSize(w, h);
+  labelRenderer.domElement.style.position = 'absolute';
+  labelRenderer.domElement.style.top = '0';
+  labelRenderer.domElement.style.left = '0';
+  labelRenderer.domElement.style.pointerEvents = 'none';
+  container.appendChild(labelRenderer.domElement);
+
+  // OrbitControls for rotation/zoom/pan
+  controls3d = new window.OrbitControls(camera3d, renderer3d.domElement);
+  controls3d.enableDamping = true;
+  controls3d.dampingFactor = 0.08;
+  controls3d.minDistance = 10;
+  controls3d.maxDistance = 200;
+
+  // Ambient light
+  scene3d.add(new T.AmbientLight(0xffffff, 0.6));
+  const dirLight = new T.DirectionalLight(0xffffff, 0.4);
+  dirLight.position.set(50, 80, 50);
+  scene3d.add(dirLight);
+
+  // Handle resize
+  const ro = new ResizeObserver(() => {
+    const cw = container.clientWidth;
+    const ch = container.clientHeight;
+    camera3d.aspect = cw / ch;
+    camera3d.updateProjectionMatrix();
+    renderer3d.setSize(cw, ch);
+    labelRenderer.setSize(cw, ch);
+  });
+  ro.observe(container);
+
+  mapInitialized = true;
+  animate3D();
+}
+
+function animate3D() {
+  if (!renderer3d) return;
+  requestAnimationFrame(animate3D);
+  controls3d.update();
+  renderer3d.render(scene3d, camera3d);
+  if (labelRenderer) labelRenderer.render(scene3d, camera3d);
+}
+
+function clearMapObjects() {
+  const T = window.THREE;
+  fleetMeshes.forEach(m => { scene3d.remove(m); if (m.geometry) m.geometry.dispose(); });
+  fleetMeshes = [];
+  pathLines.forEach(l => { scene3d.remove(l); if (l.geometry) l.geometry.dispose(); });
+  pathLines = [];
+  alertSprites.forEach(s => { scene3d.remove(s); if (s.geometry) s.geometry.dispose(); });
+  alertSprites = [];
+  labelObjects.forEach(l => { scene3d.remove(l); if (l.element) l.element.remove(); });
+  labelObjects = [];
+  if (connectionLines) { scene3d.remove(connectionLines); connectionLines.geometry.dispose(); connectionLines = null; }
+  Object.values(worldMeshes).forEach(m => { scene3d.remove(m); m.geometry.dispose(); m.material.dispose(); });
+  worldMeshes = {};
+}
+
+function update3DMap() {
+  if (!scene3d || !mapWorldsCache) return;
+  const T = window.THREE;
+  const worlds = mapWorldsCache;
+  const fleets = mapFleetsCache;
+
+  clearMapObjects();
+
+  const showConnections = document.getElementById('filter-connections')?.checked;
+  const showFleets = document.getElementById('filter-fleets')?.checked;
+  const showPaths = document.getElementById('filter-paths')?.checked;
+  const showAlerts = document.getElementById('filter-alerts')?.checked;
+  const showLabels = document.getElementById('filter-labels')?.checked;
+
+  // Build world position lookup
+  const worldPos = {};
+  worlds.forEach(w => { worldPos[w.id] = new T.Vector3(w.x, w.y, w.z); });
+
+  // Draw connections (hop links)
+  if (showConnections) {
+    const connVerts = [];
+    const drawn = new Set();
+    worlds.forEach(w => {
+      w.connections.forEach(cid => {
+        const key = Math.min(w.id, cid) + '_' + Math.max(w.id, cid);
+        if (drawn.has(key)) return;
+        drawn.add(key);
+        const p1 = worldPos[w.id];
+        const p2 = worldPos[cid];
+        if (p1 && p2) {
+          connVerts.push(p1.x, p1.y, p1.z, p2.x, p2.y, p2.z);
+        }
+      });
+    });
+    const connGeo = new T.BufferGeometry();
+    connGeo.setAttribute('position', new T.Float32BufferAttribute(connVerts, 3));
+    const connMat = new T.LineBasicMaterial({ color: 0x555577, opacity: 0.3, transparent: true });
+    connectionLines = new T.LineSegments(connGeo, connMat);
+    scene3d.add(connectionLines);
+  }
+
+  // Draw worlds as spheres
+  worlds.forEach(w => {
+    let color = '#6b7280';
+    let size = 0.4;
+    let dimmed = false;
+
+    if (w.is_black_hole) {
+      color = '#000000';
+      size = 0.7;
+    } else if (w.owner && gameData) {
+      const player = gameData.players.find(p => p.name === w.owner);
+      if (player) {
+        if (!isPlayerVisible(w.owner)) {
+          dimmed = true;
+          color = '#444';
+          size = 0.25;
+        } else {
+          color = TYPE_COLORS[player.type] || color;
+          size = 0.4 + Math.min(w.industry / 8, 0.6);
+        }
+      }
+    }
+
+    const geo = new T.SphereGeometry(size, 12, 8);
+    const mat = new T.MeshPhongMaterial({
+      color: new T.Color(color),
+      transparent: dimmed,
+      opacity: dimmed ? 0.2 : 1,
+      emissive: new T.Color(color),
+      emissiveIntensity: w.is_black_hole ? 0 : 0.3,
+    });
+    const mesh = new T.Mesh(geo, mat);
+    mesh.position.copy(worldPos[w.id]);
+    mesh.userData = { worldId: w.id, owner: w.owner };
+    scene3d.add(mesh);
+    worldMeshes[w.id] = mesh;
+
+    // Labels
+    if (showLabels && !dimmed) {
+      const div = document.createElement('div');
+      div.textContent = `W${w.id}`;
+      div.style.cssText = 'font-size:9px;color:rgba(200,200,220,0.8);pointer-events:none;';
+      const label = new window.CSS2DObject(div);
+      label.position.set(0, size + 0.5, 0);
+      mesh.add(label);
+      labelObjects.push(label);
+    }
+  });
+
+  // Draw fleets
+  if (showFleets && fleets) {
+    const fleetsByWorld = {};
+    fleets.forEach(f => {
+      if (!fleetsByWorld[f.world_id]) fleetsByWorld[f.world_id] = [];
+      fleetsByWorld[f.world_id].push(f);
+    });
+
+    Object.entries(fleetsByWorld).forEach(([wid, wFleets]) => {
+      const pos = worldPos[parseInt(wid)];
+      if (!pos) return;
+      const visible = wFleets.filter(f => isPlayerVisible(f.owner));
+      visible.forEach((f, idx) => {
+        let fleetColor = '#888';
+        if (gameData) {
+          const player = gameData.players.find(p => p.name === f.owner);
+          if (player) fleetColor = TYPE_COLORS[player.type] || fleetColor;
+        }
+
+        const angle = (idx / visible.length) * Math.PI * 2;
+        const offset = 1.5;
+        const fx = pos.x + offset * Math.cos(angle);
+        const fy = pos.y + 0.8;
+        const fz = pos.z + offset * Math.sin(angle);
+
+        const coneGeo = new T.ConeGeometry(0.3, 0.7, 6);
+        const coneMat = new T.MeshPhongMaterial({ color: new T.Color(fleetColor), emissive: new T.Color(fleetColor), emissiveIntensity: 0.4 });
+        const cone = new T.Mesh(coneGeo, coneMat);
+        cone.position.set(fx, fy, fz);
+        cone.rotation.x = Math.PI;
+        scene3d.add(cone);
+        fleetMeshes.push(cone);
+
+        if (showLabels) {
+          const div = document.createElement('div');
+          div.textContent = `F${f.id}:${f.ships}`;
+          div.style.cssText = `font-size:8px;color:${fleetColor};pointer-events:none;font-weight:600;`;
+          const lbl = new window.CSS2DObject(div);
+          lbl.position.set(0, 0.6, 0);
+          cone.add(lbl);
+          labelObjects.push(lbl);
+        }
+      });
+    });
+  }
+
+  // Draw movement paths
+  if (showPaths && mapTurnLogCache && mapTurnLogCache.events) {
+    let moveEvents = mapTurnLogCache.events.filter(e => e.type === 'movement' && e.from_world);
+    moveEvents.filter(e => isPlayerVisible(e.player)).forEach(e => {
+      const from = worldPos[e.from_world];
+      const to = worldPos[e.destination];
+      if (!from || !to) return;
+
+      let pathColor = '#888';
+      if (gameData) {
+        const player = gameData.players.find(p => p.name === e.player);
+        if (player) pathColor = TYPE_COLORS[player.type] || pathColor;
+      }
+
+      const points = [from, to];
+      const geo = new T.BufferGeometry().setFromPoints(points);
+      const mat = new T.LineDashedMaterial({
+        color: new T.Color(pathColor),
+        dashSize: 0.8,
+        gapSize: 0.4,
+        opacity: 0.7,
+        transparent: true,
+      });
+      const line = new T.Line(geo, mat);
+      line.computeLineDistances();
+      scene3d.add(line);
+      pathLines.push(line);
+
+      // Arrow head
+      const dir = new T.Vector3().subVectors(to, from).normalize();
+      const arrowGeo = new T.ConeGeometry(0.2, 0.5, 6);
+      const arrowMat = new T.MeshBasicMaterial({ color: new T.Color(pathColor), opacity: 0.7, transparent: true });
+      const arrow = new T.Mesh(arrowGeo, arrowMat);
+      arrow.position.copy(to.clone().sub(dir.clone().multiplyScalar(0.6)));
+      arrow.lookAt(to);
+      arrow.rotateX(Math.PI / 2);
+      scene3d.add(arrow);
+      pathLines.push(arrow);
+    });
+  }
+
+  // Draw alert indicators
+  if (showAlerts && mapTurnLogCache && mapTurnLogCache.events) {
+    const alertColorMap = {
+      world_captured: '#dc2626',
+      fire_population: '#f59e0b',
+      fire_industry: '#f59e0b',
+      robot_attack: '#dc2626',
+      pbb_dropped: '#7c3aed',
+      ambush: '#f59e0b',
+      message_delivered: '#0078d4',
+    };
+    const alertEvents = mapTurnLogCache.events.filter(e => alertColorMap[e.type] && isPlayerVisible(e.player));
+    const alertsByWorld = {};
+    alertEvents.forEach(e => {
+      const wid = e.world || e.destination;
+      if (!wid || alertsByWorld[wid]) return;
+      alertsByWorld[wid] = alertColorMap[e.type];
+    });
+
+    Object.entries(alertsByWorld).forEach(([wid, color]) => {
+      const pos = worldPos[parseInt(wid)];
+      if (!pos) return;
+      const ringGeo = new T.TorusGeometry(1.2, 0.1, 8, 24);
+      const ringMat = new T.MeshBasicMaterial({ color: new T.Color(color), opacity: 0.6, transparent: true });
+      const ring = new T.Mesh(ringGeo, ringMat);
+      ring.position.copy(pos);
+      ring.rotation.x = Math.PI / 2;
+      scene3d.add(ring);
+      alertSprites.push(ring);
+    });
+  }
+
+  // Update info text
+  const info = document.getElementById('map-info');
+  if (info) {
+    const conns = worlds.reduce((s, w) => s + w.connections.length, 0) / 2;
+    info.textContent = `${worlds.length} systems | ${Math.round(conns)} hop links | Drag=rotate, Scroll=zoom, Right-drag=pan`;
+  }
+}
+
+async function renderGalaxyMap() {
+  mapWorldsCache = await fetchJSON('/api/game/worlds');
+  mapFleetsCache = await fetchJSON('/api/game/fleets');
+  mapTurnLogCache = await fetchJSON('/api/turn/log');
+  buildPlayerFilters();
+  init3DScene();
+  if (!window.THREE) {
+    setTimeout(() => { update3DMap(); }, 300);
+  } else {
+    update3DMap();
+  }
+}
+
+// Initial load
+refreshData();
+</script>
+</body>
+</html>

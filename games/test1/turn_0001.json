@@ -1,0 +1,419 @@
+{
+  "turn": 1,
+  "events": [
+    {
+      "type": "load",
+      "player": "SOLARIS",
+      "fleet": 1,
+      "world": 210,
+      "quantity": 3
+    },
+    {
+      "type": "load",
+      "player": "SOLARIS",
+      "fleet": 2,
+      "world": 210,
+      "quantity": 3
+    },
+    {
+      "type": "load",
+      "player": "SOLARIS",
+      "fleet": 3,
+      "world": 210,
+      "quantity": 5
+    },
+    {
+      "type": "load",
+      "player": "SOLARIS",
+      "fleet": 4,
+      "world": 210,
+      "quantity": 7
+    },
+    {
+      "type": "load",
+      "player": "SOLARIS",
+      "fleet": 5,
+      "world": 210,
+      "quantity": 7
+    },
+    {
+      "type": "load",
+      "player": "TRADER",
+      "fleet": 6,
+      "world": 17,
+      "quantity": 10
+    },
+    {
+      "type": "load",
+      "player": "TRADER",
+      "fleet": 7,
+      "world": 17,
+      "quantity": 6
+    },
+    {
+      "type": "load",
+      "player": "TRADER",
+      "fleet": 8,
+      "world": 17,
+      "quantity": 12
+    },
+    {
+      "type": "load",
+      "player": "TRADER",
+      "fleet": 9,
+      "world": 17,
+      "quantity": 2
+    },
+    {
+      "type": "load",
+      "player": "TRADER",
+      "fleet": 10,
+      "world": 17,
+      "quantity": 0
+    },
+    {
+      "type": "load",
+      "player": "OMEGA",
+      "fleet": 21,
+      "world": 166,
+      "quantity": 8
+    },
+    {
+      "type": "load",
+      "player": "OMEGA",
+      "fleet": 22,
+      "world": 166,
+      "quantity": 5
+    },
+    {
+      "type": "load",
+      "player": "OMEGA",
+      "fleet": 23,
+      "world": 166,
+      "quantity": 6
+    },
+    {
+      "type": "load",
+      "player": "OMEGA",
+      "fleet": 24,
+      "world": 166,
+      "quantity": 3
+    },
+    {
+      "type": "load",
+      "player": "OMEGA",
+      "fleet": 25,
+      "world": 166,
+      "quantity": 4
+    },
+    {
+      "type": "load",
+      "player": "TERRAN",
+      "fleet": 31,
+      "world": 137,
+      "quantity": 4
+    },
+    {
+      "type": "load",
+      "player": "TERRAN",
+      "fleet": 32,
+      "world": 137,
+      "quantity": 8
+    },
+    {
+      "type": "load",
+      "player": "TERRAN",
+      "fleet": 33,
+      "world": 137,
+      "quantity": 7
+    },
+    {
+      "type": "load",
+      "player": "TERRAN",
+      "fleet": 34,
+      "world": 137,
+      "quantity": 5
+    },
+    {
+      "type": "load",
+      "player": "TERRAN",
+      "fleet": 35,
+      "world": 137,
+      "quantity": 6
+    },
+    {
+      "type": "load",
+      "player": "NOMAD",
+      "fleet": 36,
+      "world": 132,
+      "quantity": 10
+    },
+    {
+      "type": "load",
+      "player": "NOMAD",
+      "fleet": 37,
+      "world": 132,
+      "quantity": 8
+    },
+    {
+      "type": "load",
+      "player": "NOMAD",
+      "fleet": 38,
+      "world": 132,
+      "quantity": 12
+    },
+    {
+      "type": "load",
+      "player": "NOMAD",
+      "fleet": 39,
+      "world": 132,
+      "quantity": 0
+    },
+    {
+      "type": "load",
+      "player": "NOMAD",
+      "fleet": 40,
+      "world": 132,
+      "quantity": 0
+    },
+    {
+      "type": "industry_built",
+      "player": "SOLARIS",
+      "world": 210,
+      "quantity": 1
+    },
+    {
+      "type": "industry_built",
+      "player": "TERRAN",
+      "world": 137,
+      "quantity": 0
+    },
+    {
+      "type": "ships_built",
+      "player": "SOLARIS",
+      "world": 210,
+      "fleet": 1,
+      "quantity": 1
+    },
+    {
+      "type": "ships_built",
+      "player": "TRADER",
+      "world": 17,
+      "fleet": 6,
+      "quantity": 0
+    },
+    {
+      "type": "ships_built",
+      "player": "OMEGA",
+      "world": 166,
+      "fleet": 21,
+      "quantity": 4
+    },
+    {
+      "type": "ships_built",
+      "player": "TERRAN",
+      "world": 137,
+      "fleet": 31,
+      "quantity": 0
+    },
+    {
+      "type": "ships_built",
+      "player": "NOMAD",
+      "world": 132,
+      "fleet": 36,
+      "quantity": 0
+    },
+    {
+      "type": "movement",
+      "player": "SOLARIS",
+      "fleet": 1,
+      "destination": 208
+    },
+    {
+      "type": "movement",
+      "player": "SOLARIS",
+      "fleet": 2,
+      "destination": 209
+    },
+    {
+      "type": "movement",
+      "player": "SOLARIS",
+      "fleet": 3,
+      "destination": 211
+    },
+    {
+      "type": "movement",
+      "player": "SOLARIS",
+      "fleet": 4,
+      "destination": 212
+    },
+    {
+      "type": "movement",
+      "player": "TRADER",
+      "fleet": 6,
+      "destination": 164
+    },
+    {
+      "type": "movement",
+      "player": "TRADER",
+      "fleet": 7,
+      "destination": 141
+    },
+    {
+      "type": "movement",
+      "player": "TRADER",
+      "fleet": 8,
+      "destination": 15
+    },
+    {
+      "type": "movement",
+      "player": "TRADER",
+      "fleet": 9,
+      "destination": 16
+    },
+    {
+      "type": "movement",
+      "player": "TRADER",
+      "fleet": 10,
+      "destination": 175
+    },
+    {
+      "type": "movement",
+      "player": "CURATOR",
+      "fleet": 16,
+      "destination": 148
+    },
+    {
+      "type": "movement",
+      "player": "CURATOR",
+      "fleet": 17,
+      "destination": 148
+    },
+    {
+      "type": "movement",
+      "player": "CURATOR",
+      "fleet": 18,
+      "destination": 148
+    },
+    {
+      "type": "movement",
+      "player": "CURATOR",
+      "fleet": 19,
+      "destination": 148
+    },
+    {
+      "type": "movement",
+      "player": "CURATOR",
+      "fleet": 20,
+      "destination": 148
+    },
+    {
+      "type": "movement",
+      "player": "OMEGA",
+      "fleet": 21,
+      "destination": 187
+    },
+    {
+      "type": "movement",
+      "player": "OMEGA",
+      "fleet": 22,
+      "destination": 103
+    },
+    {
+      "type": "movement",
+      "player": "OMEGA",
+      "fleet": 23,
+      "destination": 147
+    },
+    {
+      "type": "movement",
+      "player": "OMEGA",
+      "fleet": 24,
+      "destination": 167
+    },
+    {
+      "type": "movement",
+      "player": "PROPHET",
+      "fleet": 26,
+      "destination": 132
+    },
+    {
+      "type": "movement",
+      "player": "PROPHET",
+      "fleet": 27,
+      "destination": 132
+    },
+    {
+      "type": "movement",
+      "player": "PROPHET",
+      "fleet": 28,
+      "destination": 132
+    },
+    {
+      "type": "movement",
+      "player": "PROPHET",
+      "fleet": 29,
+      "destination": 132
+    },
+    {
+      "type": "movement",
+      "player": "PROPHET",
+      "fleet": 30,
+      "destination": 132
+    },
+    {
+      "type": "movement",
+      "player": "TERRAN",
+      "fleet": 31,
+      "destination": 136
+    },
+    {
+      "type": "movement",
+      "player": "TERRAN",
+      "fleet": 32,
+      "destination": 138
+    },
+    {
+      "type": "movement",
+      "player": "TERRAN",
+      "fleet": 33,
+      "destination": 155
+    },
+    {
+      "type": "movement",
+      "player": "TERRAN",
+      "fleet": 34,
+      "destination": 135
+    },
+    {
+      "type": "movement",
+      "player": "NOMAD",
+      "fleet": 36,
+      "destination": 98
+    },
+    {
+      "type": "movement",
+      "player": "NOMAD",
+      "fleet": 37,
+      "destination": 131
+    },
+    {
+      "type": "movement",
+      "player": "NOMAD",
+      "fleet": 38,
+      "destination": 206
+    },
+    {
+      "type": "movement",
+      "player": "NOMAD",
+      "fleet": 39,
+      "destination": 134
+    },
+    {
+      "type": "pirate_capture",
+      "player": "REAVER",
+      "fleet": 24,
+      "world": 167
+    }
+  ]
+}

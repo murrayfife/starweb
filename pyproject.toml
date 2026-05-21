@@ -1,0 +1,16 @@
+[project]
+name = "starweb-pbm"
+version = "0.1.0"
+description = "StarWeb Play-by-Mail game engine with AI agents, bulletin boards, and diplomacy"
+requires-python = ">=3.11"
+dependencies = [
+    "pydantic>=2.0",
+    "rich>=13.0",
+    "networkx>=3.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "pytest-asyncio"]
+
+[project.scripts]
+starweb = "starweb.cli:main"

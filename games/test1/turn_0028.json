@@ -1,0 +1,59 @@
+{
+  "turn": 28,
+  "events": [
+    {
+      "type": "unload",
+      "player": "SOLARIS",
+      "fleet": 5,
+      "world": 210,
+      "quantity": 50
+    },
+    {
+      "type": "unload",
+      "player": "TERRAN",
+      "fleet": 35,
+      "world": 137,
+      "quantity": 45
+    },
+    {
+      "type": "load",
+      "player": "SOLARIS",
+      "fleet": 5,
+      "world": 210,
+      "quantity": 52
+    },
+    {
+      "type": "industry_built",
+      "player": "SOLARIS",
+      "world": 210,
+      "quantity": 0
+    },
+    {
+      "type": "industry_built",
+      "player": "TERRAN",
+      "world": 137,
+      "quantity": 1
+    },
+    {
+      "type": "ships_built",
+      "player": "SOLARIS",
+      "world": 210,
+      "fleet": 5,
+      "quantity": 3
+    },
+    {
+      "type": "ships_built",
+      "player": "TERRAN",
+      "world": 137,
+      "fleet": 35,
+      "quantity": 5
+    },
+    {
+      "type": "ships_built",
+      "player": "NOMAD",
+      "world": 132,
+      "fleet": 40,
+      "quantity": 5
+    }
+  ]
+}
