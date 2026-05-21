@@ -1,0 +1,705 @@
+{
+  "turn": 1,
+  "events": [
+    {
+      "type": "order_submitted",
+      "player": "SOLARIS",
+      "order_type": "move",
+      "fleet_id": 1,
+      "world_id": null,
+      "target_fleet_id": null,
+      "target_player": null,
+      "target_world_id": null,
+      "waypoints": [
+        15
+      ],
+      "quantity": null
+    },
+    {
+      "type": "order_submitted",
+      "player": "SOLARIS",
+      "order_type": "move",
+      "fleet_id": 2,
+      "world_id": null,
+      "target_fleet_id": null,
+      "target_player": null,
+      "target_world_id": null,
+      "waypoints": [
+        13
+      ],
+      "quantity": null
+    },
+    {
+      "type": "order_submitted",
+      "player": "TRADER",
+      "order_type": "load",
+      "fleet_id": 3,
+      "world_id": null,
+      "target_fleet_id": null,
+      "target_player": null,
+      "target_world_id": null,
+      "waypoints": [],
+      "quantity": null
+    },
+    {
+      "type": "order_submitted",
+      "player": "TRADER",
+      "order_type": "load",
+      "fleet_id": 4,
+      "world_id": null,
+      "target_fleet_id": null,
+      "target_player": null,
+      "target_world_id": null,
+      "waypoints": [],
+      "quantity": null
+    },
+    {
+      "type": "order_submitted",
+      "player": "TRADER",
+      "order_type": "build_fleet",
+      "fleet_id": null,
+      "world_id": 1,
+      "target_fleet_id": 3,
+      "target_player": null,
+      "target_world_id": null,
+      "waypoints": [],
+      "quantity": 25
+    },
+    {
+      "type": "order_submitted",
+      "player": "TRADER",
+      "order_type": "move",
+      "fleet_id": 4,
+      "world_id": null,
+      "target_fleet_id": null,
+      "target_player": null,
+      "target_world_id": null,
+      "waypoints": [
+        3
+      ],
+      "quantity": null
+    },
+    {
+      "type": "order_submitted",
+      "player": "TRADER",
+      "order_type": "move",
+      "fleet_id": 3,
+      "world_id": null,
+      "target_fleet_id": null,
+      "target_player": null,
+      "target_world_id": null,
+      "waypoints": [
+        4
+      ],
+      "quantity": null
+    },
+    {
+      "type": "order_submitted",
+      "player": "REAVER",
+      "order_type": "load",
+      "fleet_id": 5,
+      "world_id": null,
+      "target_fleet_id": null,
+      "target_player": null,
+      "target_world_id": null,
+      "waypoints": [],
+      "quantity": null
+    },
+    {
+      "type": "order_submitted",
+      "player": "REAVER",
+      "order_type": "load",
+      "fleet_id": 6,
+      "world_id": null,
+      "target_fleet_id": null,
+      "target_player": null,
+      "target_world_id": null,
+      "waypoints": [],
+      "quantity": null
+    },
+    {
+      "type": "order_submitted",
+      "player": "REAVER",
+      "order_type": "plunder",
+      "fleet_id": null,
+      "world_id": 14,
+      "target_fleet_id": null,
+      "target_player": null,
+      "target_world_id": null,
+      "waypoints": [],
+      "quantity": null
+    },
+    {
+      "type": "order_submitted",
+      "player": "REAVER",
+      "order_type": "build_fleet",
+      "fleet_id": null,
+      "world_id": 14,
+      "target_fleet_id": 5,
+      "target_player": null,
+      "target_world_id": null,
+      "waypoints": [],
+      "quantity": 25
+    },
+    {
+      "type": "order_submitted",
+      "player": "REAVER",
+      "order_type": "move",
+      "fleet_id": 5,
+      "world_id": null,
+      "target_fleet_id": null,
+      "target_player": null,
+      "target_world_id": null,
+      "waypoints": [
+        17
+      ],
+      "quantity": null
+    },
+    {
+      "type": "order_submitted",
+      "player": "REAVER",
+      "order_type": "move",
+      "fleet_id": 6,
+      "world_id": null,
+      "target_fleet_id": null,
+      "target_player": null,
+      "target_world_id": null,
+      "waypoints": [
+        9
+      ],
+      "quantity": null
+    },
+    {
+      "type": "order_submitted",
+      "player": "CURATOR",
+      "order_type": "load",
+      "fleet_id": 7,
+      "world_id": null,
+      "target_fleet_id": null,
+      "target_player": null,
+      "target_world_id": null,
+      "waypoints": [],
+      "quantity": null
+    },
+    {
+      "type": "order_submitted",
+      "player": "CURATOR",
+      "order_type": "load",
+      "fleet_id": 8,
+      "world_id": null,
+      "target_fleet_id": null,
+      "target_player": null,
+      "target_world_id": null,
+      "waypoints": [],
+      "quantity": null
+    },
+    {
+      "type": "order_submitted",
+      "player": "CURATOR",
+      "order_type": "build_fleet",
+      "fleet_id": null,
+      "world_id": 15,
+      "target_fleet_id": 7,
+      "target_player": null,
+      "target_world_id": null,
+      "waypoints": [],
+      "quantity": 25
+    },
+    {
+      "type": "order_submitted",
+      "player": "CURATOR",
+      "order_type": "move",
+      "fleet_id": 7,
+      "world_id": null,
+      "target_fleet_id": null,
+      "target_player": null,
+      "target_world_id": null,
+      "waypoints": [
+        10
+      ],
+      "quantity": null
+    },
+    {
+      "type": "order_submitted",
+      "player": "OMEGA",
+      "order_type": "move",
+      "fleet_id": 9,
+      "world_id": null,
+      "target_fleet_id": null,
+      "target_player": null,
+      "target_world_id": null,
+      "waypoints": [
+        8
+      ],
+      "quantity": null
+    },
+    {
+      "type": "order_submitted",
+      "player": "OMEGA",
+      "order_type": "move",
+      "fleet_id": 10,
+      "world_id": null,
+      "target_fleet_id": null,
+      "target_player": null,
+      "target_world_id": null,
+      "waypoints": [
+        10
+      ],
+      "quantity": null
+    },
+    {
+      "type": "order_submitted",
+      "player": "PROPHET",
+      "order_type": "load",
+      "fleet_id": 11,
+      "world_id": null,
+      "target_fleet_id": null,
+      "target_player": null,
+      "target_world_id": null,
+      "waypoints": [],
+      "quantity": null
+    },
+    {
+      "type": "order_submitted",
+      "player": "PROPHET",
+      "order_type": "load",
+      "fleet_id": 12,
+      "world_id": null,
+      "target_fleet_id": null,
+      "target_player": null,
+      "target_world_id": null,
+      "waypoints": [],
+      "quantity": null
+    },
+    {
+      "type": "order_submitted",
+      "player": "PROPHET",
+      "order_type": "move",
+      "fleet_id": 11,
+      "world_id": null,
+      "target_fleet_id": null,
+      "target_player": null,
+      "target_world_id": null,
+      "waypoints": [
+        28
+      ],
+      "quantity": null
+    },
+    {
+      "type": "order_submitted",
+      "player": "PROPHET",
+      "order_type": "move",
+      "fleet_id": 12,
+      "world_id": null,
+      "target_fleet_id": null,
+      "target_player": null,
+      "target_world_id": null,
+      "waypoints": [
+        28
+      ],
+      "quantity": null
+    },
+    {
+      "type": "order_submitted",
+      "player": "PROPHET",
+      "order_type": "build_fleet",
+      "fleet_id": null,
+      "world_id": 23,
+      "target_fleet_id": 11,
+      "target_player": null,
+      "target_world_id": null,
+      "waypoints": [],
+      "quantity": 25
+    },
+    {
+      "type": "order_submitted",
+      "player": "TERRAN",
+      "order_type": "load",
+      "fleet_id": 13,
+      "world_id": null,
+      "target_fleet_id": null,
+      "target_player": null,
+      "target_world_id": null,
+      "waypoints": [],
+      "quantity": null
+    },
+    {
+      "type": "order_submitted",
+      "player": "TERRAN",
+      "order_type": "load",
+      "fleet_id": 14,
+      "world_id": null,
+      "target_fleet_id": null,
+      "target_player": null,
+      "target_world_id": null,
+      "waypoints": [],
+      "quantity": null
+    },
+    {
+      "type": "order_submitted",
+      "player": "TERRAN",
+      "order_type": "build_industry",
+      "fleet_id": null,
+      "world_id": 8,
+      "target_fleet_id": null,
+      "target_player": null,
+      "target_world_id": null,
+      "waypoints": [],
+      "quantity": 2
+    },
+    {
+      "type": "order_submitted",
+      "player": "TERRAN",
+      "order_type": "build_fleet",
+      "fleet_id": null,
+      "world_id": 8,
+      "target_fleet_id": 13,
+      "target_player": null,
+      "target_world_id": null,
+      "waypoints": [],
+      "quantity": 25
+    },
+    {
+      "type": "order_submitted",
+      "player": "TERRAN",
+      "order_type": "move",
+      "fleet_id": 14,
+      "world_id": null,
+      "target_fleet_id": null,
+      "target_player": null,
+      "target_world_id": null,
+      "waypoints": [
+        16
+      ],
+      "quantity": null
+    },
+    {
+      "type": "order_submitted",
+      "player": "TERRAN",
+      "order_type": "move",
+      "fleet_id": 13,
+      "world_id": null,
+      "target_fleet_id": null,
+      "target_player": null,
+      "target_world_id": null,
+      "waypoints": [
+        2
+      ],
+      "quantity": null
+    },
+    {
+      "type": "order_submitted",
+      "player": "NOMAD",
+      "order_type": "load",
+      "fleet_id": 15,
+      "world_id": null,
+      "target_fleet_id": null,
+      "target_player": null,
+      "target_world_id": null,
+      "waypoints": [],
+      "quantity": null
+    },
+    {
+      "type": "order_submitted",
+      "player": "NOMAD",
+      "order_type": "load",
+      "fleet_id": 16,
+      "world_id": null,
+      "target_fleet_id": null,
+      "target_player": null,
+      "target_world_id": null,
+      "waypoints": [],
+      "quantity": null
+    },
+    {
+      "type": "order_submitted",
+      "player": "NOMAD",
+      "order_type": "build_fleet",
+      "fleet_id": null,
+      "world_id": 22,
+      "target_fleet_id": 15,
+      "target_player": null,
+      "target_world_id": null,
+      "waypoints": [],
+      "quantity": 25
+    },
+    {
+      "type": "order_submitted",
+      "player": "NOMAD",
+      "order_type": "move",
+      "fleet_id": 15,
+      "world_id": null,
+      "target_fleet_id": null,
+      "target_player": null,
+      "target_world_id": null,
+      "waypoints": [
+        25
+      ],
+      "quantity": null
+    },
+    {
+      "type": "order_submitted",
+      "player": "NOMAD",
+      "order_type": "move",
+      "fleet_id": 16,
+      "world_id": null,
+      "target_fleet_id": null,
+      "target_player": null,
+      "target_world_id": null,
+      "waypoints": [
+        19
+      ],
+      "quantity": null
+    },
+    {
+      "type": "load",
+      "player": "TRADER",
+      "fleet": 3,
+      "world": 1,
+      "quantity": 6
+    },
+    {
+      "type": "load",
+      "player": "TRADER",
+      "fleet": 4,
+      "world": 1,
+      "quantity": 10
+    },
+    {
+      "type": "load",
+      "player": "REAVER",
+      "fleet": 5,
+      "world": 14,
+      "quantity": 4
+    },
+    {
+      "type": "load",
+      "player": "REAVER",
+      "fleet": 6,
+      "world": 14,
+      "quantity": 4
+    },
+    {
+      "type": "load",
+      "player": "CURATOR",
+      "fleet": 7,
+      "world": 15,
+      "quantity": 4
+    },
+    {
+      "type": "load",
+      "player": "CURATOR",
+      "fleet": 8,
+      "world": 15,
+      "quantity": 8
+    },
+    {
+      "type": "load",
+      "player": "PROPHET",
+      "fleet": 11,
+      "world": 23,
+      "quantity": 3
+    },
+    {
+      "type": "load",
+      "player": "PROPHET",
+      "fleet": 12,
+      "world": 23,
+      "quantity": 8
+    },
+    {
+      "type": "load",
+      "player": "TERRAN",
+      "fleet": 13,
+      "world": 8,
+      "quantity": 8
+    },
+    {
+      "type": "load",
+      "player": "TERRAN",
+      "fleet": 14,
+      "world": 8,
+      "quantity": 8
+    },
+    {
+      "type": "load",
+      "player": "NOMAD",
+      "fleet": 15,
+      "world": 22,
+      "quantity": 6
+    },
+    {
+      "type": "load",
+      "player": "NOMAD",
+      "fleet": 16,
+      "world": 22,
+      "quantity": 6
+    },
+    {
+      "type": "industry_built",
+      "player": "TERRAN",
+      "world": 8,
+      "quantity": 2
+    },
+    {
+      "type": "ships_built",
+      "player": "TRADER",
+      "world": 1,
+      "fleet": 3,
+      "quantity": 14
+    },
+    {
+      "type": "ships_built",
+      "player": "REAVER",
+      "world": 14,
+      "fleet": 5,
+      "quantity": 22
+    },
+    {
+      "type": "ships_built",
+      "player": "CURATOR",
+      "world": 15,
+      "fleet": 7,
+      "quantity": 18
+    },
+    {
+      "type": "ships_built",
+      "player": "PROPHET",
+      "world": 23,
+      "fleet": 11,
+      "quantity": 19
+    },
+    {
+      "type": "ships_built",
+      "player": "TERRAN",
+      "world": 8,
+      "fleet": 13,
+      "quantity": 6
+    },
+    {
+      "type": "ships_built",
+      "player": "NOMAD",
+      "world": 22,
+      "fleet": 15,
+      "quantity": 18
+    },
+    {
+      "type": "movement",
+      "player": "SOLARIS",
+      "fleet": 1,
+      "from_world": 10,
+      "destination": 15
+    },
+    {
+      "type": "movement",
+      "player": "SOLARIS",
+      "fleet": 2,
+      "from_world": 10,
+      "destination": 13
+    },
+    {
+      "type": "movement",
+      "player": "TRADER",
+      "fleet": 4,
+      "from_world": 1,
+      "destination": 3
+    },
+    {
+      "type": "movement",
+      "player": "TRADER",
+      "fleet": 3,
+      "from_world": 1,
+      "destination": 4
+    },
+    {
+      "type": "movement",
+      "player": "REAVER",
+      "fleet": 5,
+      "from_world": 14,
+      "destination": 17
+    },
+    {
+      "type": "movement",
+      "player": "REAVER",
+      "fleet": 6,
+      "from_world": 14,
+      "destination": 9
+    },
+    {
+      "type": "movement",
+      "player": "CURATOR",
+      "fleet": 7,
+      "from_world": 15,
+      "destination": 10
+    },
+    {
+      "type": "movement",
+      "player": "OMEGA",
+      "fleet": 9,
+      "from_world": 5,
+      "destination": 8
+    },
+    {
+      "type": "movement",
+      "player": "OMEGA",
+      "fleet": 10,
+      "from_world": 5,
+      "destination": 10
+    },
+    {
+      "type": "movement",
+      "player": "PROPHET",
+      "fleet": 11,
+      "from_world": 23,
+      "destination": 28
+    },
+    {
+      "type": "movement",
+      "player": "PROPHET",
+      "fleet": 12,
+      "from_world": 23,
+      "destination": 28
+    },
+    {
+      "type": "movement",
+      "player": "TERRAN",
+      "fleet": 14,
+      "from_world": 8,
+      "destination": 16
+    },
+    {
+      "type": "movement",
+      "player": "TERRAN",
+      "fleet": 13,
+      "from_world": 8,
+      "destination": 2
+    },
+    {
+      "type": "movement",
+      "player": "NOMAD",
+      "fleet": 15,
+      "from_world": 22,
+      "destination": 25
+    },
+    {
+      "type": "movement",
+      "player": "NOMAD",
+      "fleet": 16,
+      "from_world": 22,
+      "destination": 19
+    },
+    {
+      "type": "world_captured",
+      "player": "OMEGA",
+      "world": 8,
+      "from_player": "TERRAN"
+    },
+    {
+      "type": "world_captured",
+      "player": "PROPHET",
+      "world": 28,
+      "from_player": null
+    }
+  ],
+  "narrative": "# Turn 1\n\n*8 commanders issued orders this turn.*\n\n## Strategic Decisions\n\n### CURATOR (artifact collector)\n\nDispatched 1 fleets across the galaxy \u2014 targeting worlds W10.\n\nEconomic activity: loaded cargo onto 2 fleets; commissioned 25 new ships.\n\n### NOMAD (merchant)\n\nDispatched 2 fleets across the galaxy \u2014 targeting worlds W25, W19.\n\nEconomic activity: loaded cargo onto 2 fleets; commissioned 25 new ships.\n\n### OMEGA (berserker)\n\nDispatched 2 fleets across the galaxy \u2014 targeting worlds W8, W10.\n\n### PROPHET (apostle)\n\nDispatched 2 fleets across the galaxy \u2014 targeting worlds W28, W28.\n\nEconomic activity: loaded cargo onto 2 fleets; commissioned 25 new ships.\n\n### REAVER (pirate)\n\nDispatched 2 fleets across the galaxy \u2014 targeting worlds W17, W9.\n\nEconomic activity: loaded cargo onto 2 fleets; commissioned 25 new ships.\n\n### SOLARIS (empire builder)\n\nDispatched 2 fleets across the galaxy \u2014 targeting worlds W15, W13.\n\n### TERRAN (empire builder)\n\nDispatched 2 fleets across the galaxy \u2014 targeting worlds W16, W2.\n\nEconomic activity: loaded cargo onto 2 fleets; commissioned 25 new ships; invested in 2 units of industry.\n\n### TRADER (merchant)\n\nDispatched 2 fleets across the galaxy \u2014 targeting worlds W3, W4.\n\nEconomic activity: loaded cargo onto 2 fleets; commissioned 25 new ships.\n\n## Consequences\n\n### Territorial Shifts\n\n- **OMEGA** seized control of W8 (previously TERRAN).\n\n- **PROPHET** seized control of W28 (previously neutral territory).\n\n### Fleet Movements\n\n- **CURATOR** moved: F7\u2192W10\n\n- **NOMAD** moved: F15\u2192W25, F16\u2192W19\n\n- **OMEGA** moved: F9\u2192W8, F10\u2192W10\n\n- **PROPHET** moved: F11\u2192W28, F12\u2192W28\n\n- **REAVER** moved: F5\u2192W17, F6\u2192W9\n\n- **SOLARIS** moved: F1\u2192W15, F2\u2192W13\n\n- **TERRAN** moved: F14\u2192W16, F13\u2192W2\n\n- **TRADER** moved: F4\u2192W3, F3\u2192W4\n\n### Production\n\n- **CURATOR** launched 18 new ships.\n\n- **NOMAD** launched 18 new ships.\n\n- **PROPHET** launched 19 new ships.\n\n- **REAVER** launched 22 new ships.\n\n- **TERRAN** launched 6 new ships.\n\n- **TRADER** launched 14 new ships.\n\n- **TERRAN** built 2 industry.\n"
+}

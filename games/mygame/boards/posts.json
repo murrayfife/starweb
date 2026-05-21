@@ -1,0 +1,83 @@
+{
+  "next_id": 7,
+  "posts": [
+    {
+      "id": 1,
+      "board": "announcements",
+      "author": "GM",
+      "subject": "Game Started",
+      "body": "StarWeb Game mygame has begun with 8 players.\nMay the stars guide your path.",
+      "timestamp": 1779363536.3702645,
+      "turn": 0,
+      "reply_to": null,
+      "visible_to": [],
+      "pinned": false,
+      "reactions": {}
+    },
+    {
+      "id": 2,
+      "board": "announcements",
+      "author": "GM",
+      "subject": "Turn 1 Complete",
+      "body": "Turn 1 Summary:\n\n  Worlds captured: 2\n  Active players: 8",
+      "timestamp": 1779363697.713015,
+      "turn": 1,
+      "reply_to": null,
+      "visible_to": [],
+      "pinned": false,
+      "reactions": {}
+    },
+    {
+      "id": 3,
+      "board": "announcements",
+      "author": "GM",
+      "subject": "Turn 2 Complete",
+      "body": "Turn 2 Summary:\n\n  Worlds captured: 2\n  Active players: 8",
+      "timestamp": 1779363697.7221038,
+      "turn": 2,
+      "reply_to": null,
+      "visible_to": [],
+      "pinned": false,
+      "reactions": {}
+    },
+    {
+      "id": 4,
+      "board": "announcements",
+      "author": "GM",
+      "subject": "Turn 3 Complete",
+      "body": "Turn 3 Summary:\n\n  Worlds captured: 1\n  Active players: 8",
+      "timestamp": 1779363697.728035,
+      "turn": 3,
+      "reply_to": null,
+      "visible_to": [],
+      "pinned": false,
+      "reactions": {}
+    },
+    {
+      "id": 5,
+      "board": "announcements",
+      "author": "GM",
+      "subject": "Turn 4 Complete",
+      "body": "Turn 4 Summary:\n\n  Worlds captured: 3\n  Active players: 8",
+      "timestamp": 1779363697.7338889,
+      "turn": 4,
+      "reply_to": null,
+      "visible_to": [],
+      "pinned": false,
+      "reactions": {}
+    },
+    {
+      "id": 6,
+      "board": "announcements",
+      "author": "GM",
+      "subject": "Turn 5 Complete",
+      "body": "Turn 5 Summary:\n\n  Worlds captured: 2\n  Active players: 8",
+      "timestamp": 1779363697.7384393,
+      "turn": 5,
+      "reply_to": null,
+      "visible_to": [],
+      "pinned": false,
+      "reactions": {}
+    }
+  ]
+}
